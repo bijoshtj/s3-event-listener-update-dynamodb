@@ -16,16 +16,16 @@ let getS3Obj = function (region) {
 	return s3_obj_list[region];
 };
 
+let	getAllFiles = function (region, params) {
+	let s3_obj = getS3Obj(region);
+	let listObjAsync = bluebird.promisify(s3_obj.listObjects, {
+		context: s3_obj
+	});
+
+	return listObjAsync(params);
+};
+
 module.exports = class S3Helper {
-
-	getAllFiles (region, params) {
-		let s3_obj = getS3Obj(region);
-		let listObjAsync = bluebird.promisify(s3_obj.listObjects, {
-			context: s3_obj
-		});
-
-		return listObjAsync(params);
-	}
 
 	async getFiles (region, params) {
 		let result = [];
@@ -34,7 +34,7 @@ module.exports = class S3Helper {
         try {
 			do {
 				//console.log('fetch...');
-				let curr_res = await this.getAllFiles(region, params);
+				let curr_res = await getAllFiles(region, params);
 				//console.log(curr_res);
 
 				result = result.concat(curr_res.Contents);
