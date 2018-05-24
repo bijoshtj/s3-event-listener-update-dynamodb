@@ -7,7 +7,8 @@ let getS3Obj = function (region) {
 
 	if (!s3_obj_list[region]) {
 		AWS.config.update({
-			region: region
+			region: region,
+			endpoint: null
 		});
 
 		s3_obj_list[region] = new AWS.S3();
@@ -50,4 +51,4 @@ module.exports = class S3Helper {
 
 		return result;
 	}
-}
+};

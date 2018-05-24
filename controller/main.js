@@ -8,6 +8,7 @@ module.exports = function (req, resp, callback) {
 			resp.jsonp({result: result});
 		})
 		.catch(err => {
+			console.log(err);
 			resp.status(500).jsonp({error: 'error occured'});
 		});
 	//resp.send("req body is: " + JSON.stringify(req.body));
