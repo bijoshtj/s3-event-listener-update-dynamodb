@@ -9,6 +9,9 @@
   "author": "Bijosh T J",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.245.1",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3"
   }
 }
